@@ -53,7 +53,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Details2() {
+export default function ProductDetails() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
 
   return (
