@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ShoppingBagIcon,
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import Cart from "./Cart";
+import CartMenu from "./CartMenu";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cartItem);
 
   const [cartToggle, setCartToggle] = useState(false);
 
@@ -28,7 +31,7 @@ const Navbar = () => {
             Modern/Living
           </h1>
         </div>
-        <div className="hidden md:space-x-8 md:flex">
+        <div className="hidden md:space-x-8 md:flex md:pr-10">
           <a href="/furniture">Furniture</a>
           <a href="/dining">Dining</a>
           <a href="/accessories">Wall Art</a>
@@ -39,21 +42,37 @@ const Navbar = () => {
             onClick={() => setCartToggle(!cartToggle)}
             className=" w-7 "
           />
-          <span className="absolute right-5 w-5 h-5 bg-yellow-400 rounded-full grid place-content-center">
-            0
+          {/* Badge desktop format */}
+          <span
+            className={
+              cart.length === 0
+                ? "hidden"
+                : "absolute right-5 w-5 h-5 bg-yellow-400 rounded-full grid place-content-center font-semibold text-sm"
+            }
+          >
+            {cart.length}
           </span>
         </button>
         <div className="hidden max-md:flex cursor-pointer items-center">
           <div className="relative flex">
             <ShoppingBagIcon
-              onClick={() => setCartToggle(!cartToggle)}
+              onClick={() => {
+                setCartToggle(!cartToggle);
+              }}
               className="w-7 "
             />
-            <span className="absolute right-5 w-5 h-5 bg-yellow-400 rounded-full grid place-content-center">
-              0
+            {/* Badge mobile format */}
+            <span
+              className={
+                cart.length === 0
+                  ? "hidden"
+                  : "absolute right-5 w-5 h-5 bg-yellow-400 rounded-full grid place-content-center font-semibold text-sm"
+              }
+            >
+              {cart.length}
             </span>
           </div>
-          <div onClick={handleNav} className="ml-6">
+          <div onClick={handleNav} className="ml-6 ">
             {!nav ? (
               <XMarkIcon className="w-7" />
             ) : (
@@ -61,7 +80,12 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        {cartToggle && <Cart setCartToggle={setCartToggle} />}
+        {cartToggle && (
+          <CartMenu
+            setCartToggle={setCartToggle}
+            className="ease-in-out duration-500"
+          />
+        )}
       </div>
       <div className="relative">
         <div
