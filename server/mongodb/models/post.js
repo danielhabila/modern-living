@@ -13,12 +13,14 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-    required: true,
-  },
+  image: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 });
 
-const postToDB = mongoose.model("asset", postSchema);
+const postToDB = mongoose.model("furniture", postSchema);
 
 export default postToDB;

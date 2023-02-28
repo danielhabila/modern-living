@@ -1,7 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
-
 import postToDB from "../mongodb/models/post.js";
 dotenv.config();
 
@@ -18,19 +17,30 @@ router.post("/", async (req, res) => {
   try {
     const { name, price, description, image } = req.body;
 
+    let imageUrls = [];
     if (image) {
-      const photoUrl = await cloudinary.uploader.upload(image, {
-        upload_preset: "modernLiving",
-      });
-
-      const newPost = await postToDB.create({
-        name,
-        price,
-        description,
-        image: photoUrl.url,
-      });
-      res.status(201).send(newPost);
+      if (Array.isArray(image)) {
+        for (let i = 0; i < image.length; i++) {
+          const photoUrl = await cloudinary.uploader.upload(image[i], {
+            upload_preset: "modernLiving",
+          });
+          imageUrls.push(photoUrl.url);
+        }
+      } else {
+        const photoUrl = await cloudinary.uploader.upload(image, {
+          upload_preset: "modernLiving",
+        });
+        imageUrls.push(photoUrl.url);
+      }
     }
+
+    const newPost = await postToDB.create({
+      name,
+      price,
+      description,
+      image: imageUrls,
+    });
+    res.status(201).send(newPost);
   } catch (error) {
     res.status(500).send({
       error,
@@ -39,6 +49,8 @@ router.post("/", async (req, res) => {
     });
   }
 });
+
+// --------------------------------------------------------------------
 
 //Get all posts
 router.get("/", async (req, res) => {
@@ -56,3 +68,20 @@ router.get("/", async (req, res) => {
 });
 
 export default router;
+
+// Get a product by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const singleProduct = await postToDB.findById(req.params.id);
+    if (!singleProduct) {
+      return res.status(404).send({ message: "Product not found" });
+    }
+    res.status(200).send({ success: true, data: singleProduct });
+  } catch (error) {
+    res.status(500).send({
+      error,
+      success: false,
+      message: "Fetching product failed, please try again",
+    });
+  }
+});

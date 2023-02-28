@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="furniture" element={<ItemCard />} />
-          <Route path="furniture/:itemId" element={<ItemDetails />} />
+          <Route path="furniture/:id" element={<ItemDetails />} />
           <Route path="checkout" element={<Confirmation />} />
           <Route path="/admin" element={<Admin />} />
           {/* <Route path={"/lighting"} element={<Lighting />} /> */}

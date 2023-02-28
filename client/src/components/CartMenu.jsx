@@ -8,19 +8,15 @@ import {
   increaseCount,
   removeFromCart,
 } from "../state/cartReducer";
-import axios from "axios";
 
-export default function CartMenu(props) {
+export default function CartMenu() {
   const [open, setOpen] = useState(true);
-
-  // function matchCartToggleBool() {
-  //   open ? props.setCartToggle(open) : props.setCartToggle(open);
-  // }
-  // matchCartToggleBool();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cartItem);
+
+  console.log(cart);
 
   const totalPrice = cart.reduce((total, item) => {
     return total + item.qty * item?.price;
@@ -84,7 +80,7 @@ export default function CartMenu(props) {
                               <li key={item.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={item?.img}
+                                    src={item?.image}
                                     alt="NA"
                                     className="h-full w-full object-cover object-center"
                                   />

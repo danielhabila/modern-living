@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 
 function ItemCard() {
-  const { data, loading, error } = useFetch("/furnitures?populate=*");
+  const { data, loading, error } = useFetch("/api/addProduct");
 
   const navigate = useNavigate();
 
@@ -16,23 +16,22 @@ function ItemCard() {
             : loading
             ? "Loading..."
             : data?.map((item) => (
-                <a key={item.id} href={item.href} className="group">
+                <a
+                  key={item._id}
+                  // href={`/furniture/${item._id}`}
+                  className="group"
+                >
                   <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                     <img
-                      src={
-                        import.meta.env.VITE_APP_UPLOAD_URL +
-                        item?.attributes?.img?.data[1]?.attributes.url
-                      }
-                      alt={item.imageAlt}
+                      src={item.image[0]}
+                      // alt={item.imageAlt}
                       className="h-full w-full object-cover object-center group-hover:opacity-75"
-                      onClick={() => navigate(`/furniture/${item.id}`)}
+                      onClick={() => navigate(`/furniture/${item._id}`)}
                     />
                   </div>
-                  <h3 className="mt-4 text-sm text-gray-700">
-                    {item.attributes.name}
-                  </h3>
+                  <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
                   <p className="mt-1 text-lg font-medium text-gray-900">
-                    ${item.attributes.price.toLocaleString()}
+                    {item.price}
                   </p>
                 </a>
               ))}
