@@ -37,10 +37,10 @@ jobs:
 #           npm install
 #           npm run build
 
-#       - name: Install server dependencies
-#         run: |
-#           cd server
-#           npm install
+      - name: Install server dependencies
+        run: |
+          cd server
+          npm install
 
       - name: Restart pm2
         run: |
