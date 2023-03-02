@@ -31,16 +31,16 @@ jobs:
           echo CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} >> .env
           echo CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }} >> .env
 
-      # - name: Install client dependencies
-      #   run: |
-      #     cd client
-      #     npm install
-      #     npm run build
+      - name: Install client dependencies
+        run: |
+          cd client
+          npm install
+          npm run build
 
-      # - name: Install server dependencies
-      #   run: |
-      #     cd server
-      #     npm install
+      - name: Install server dependencies
+        run: |
+          cd server
+          npm install
 
       - name: Restart pm2
         run: |
