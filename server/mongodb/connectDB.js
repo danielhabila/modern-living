@@ -5,7 +5,7 @@ const connectDB = () => {
   mongoose
     .connect(process.env.MONGODB_URL)
     .then(() => console.log("Connected to mongodb successfully"))
-    .catch((err) => console.log("Mongodb connection failed", err));
+    .catch((err) => console.error("Error connecting to MongoDB", err));
 };
 
 export default connectDB;
