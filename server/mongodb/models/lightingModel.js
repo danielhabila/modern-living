@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const postSchema = new mongoose.Schema({
+const lightingSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true,
+    required: false,
   },
   image: [
     {
@@ -25,6 +25,6 @@ const postSchema = new mongoose.Schema({
   ],
 });
 
-const postToDB = mongoose.model("furniture", postSchema);
+const lightingModel = mongoose.model("lighting", lightingSchema);
 
-export default postToDB;
+export default lightingModel;

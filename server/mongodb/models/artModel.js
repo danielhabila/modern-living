@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const postSchema = new mongoose.Schema({
+const artSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -25,6 +25,6 @@ const postSchema = new mongoose.Schema({
   ],
 });
 
-const postToDB = mongoose.model("furniture", postSchema);
+const artModel = mongoose.model("art", artSchema);
 
-export default postToDB;
+export default artModel;

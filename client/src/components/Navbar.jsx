@@ -33,8 +33,7 @@ const Navbar = () => {
         </div>
         <div className="hidden md:space-x-8 md:flex md:pr-10">
           <a href="/furniture">Furniture</a>
-          <a href="/dining">Dining</a>
-          <a href="/accessories">Wall Art</a>
+          <a href="/art">Wall Art</a>
           <a href="/lighting">Lighting</a>
         </div>
         <button className="hidden md:flex relative">
@@ -96,7 +95,6 @@ const Navbar = () => {
           }
         >
           <a href="/furniture">Furniture</a>
-          <a href="/dining">Dining</a>
           <a href="/accessories">Wall Art</a>
           <a href="/lighting">Lighting</a>
         </div>

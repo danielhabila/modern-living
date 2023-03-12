@@ -2,10 +2,9 @@ import React from "react";
 
 const navigation = {
   main: [
-    { name: "Furniture", href: "/productpage" },
-    { name: "Dining", href: "/Dining" },
-    { name: "Wall Art", href: "#" },
-    { name: "Lighting", href: "#" },
+    { name: "Furniture", href: "/furniture" },
+    { name: "Wall Art", href: "/art" },
+    { name: "Lighting", href: "/lighting" },
   ],
 };
 

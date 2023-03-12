@@ -51,7 +51,7 @@ const Admin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/addProduct", {
+      const response = await axios.post("/api/postImages", {
         ...formData,
         image: productImages, // set image field to first image in productImages array
       });

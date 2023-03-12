@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { addToCart } from "../state/cartReducer";
 import { Tab } from "@headlessui/react";
 import useFetch from "../hooks/useFetch.jsx";
@@ -10,8 +10,17 @@ function classNames(...classes) {
 }
 
 export default function ItemDetails() {
+  const location = useLocation();
+  let category;
+  if (location.pathname.includes("art")) {
+    category = "fetchArt";
+  } else if (location.pathname.includes("furniture")) {
+    category = "fetchFurniture";
+  } else if (location.pathname.includes("lighting")) {
+    category = "fetchLighting";
+  }
   const { id } = useParams();
-  const { data, loading, error } = useFetch(`/api/addProduct/${id}`);
+  const { data, loading, error } = useFetch(`/api/${category}/${id}`);
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
 
