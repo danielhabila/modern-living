@@ -8,12 +8,13 @@ import {
 import Navbar from "./components/Navbar";
 import Furniture from "./pages/Furniture";
 import Home from "./pages/Home";
-import Confirmation from "./pages/checkout/Checkout";
 import Footer from "./components/Footer";
 import ItemDetails from "./pages/ItemDetails";
 import Admin from "./pages/Admin";
 import WallArt from "./pages/WallArt";
 import Lighting from "./pages/Lighting";
+import Success from "./pages/Success";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   const location = useLocation();
@@ -28,8 +29,9 @@ function App() {
           <Route path="art/:id" element={<ItemDetails />} />
           <Route path="lighting" element={<Lighting />} />
           <Route path="lighting/:id" element={<ItemDetails />} />
-          <Route path="checkout" element={<Confirmation />} />
+          <Route path="success" element={<Success />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
       {location.pathname !== "/" && <Footer />}

@@ -31,7 +31,7 @@ const Navbar = () => {
             Modern/Living
           </h1>
         </div>
-        <div className="hidden md:space-x-8 md:flex md:pr-10">
+        <div className="hidden md:space-x-8 md:flex md:pr-10 md:-ml-24">
           <a href="/furniture">Furniture</a>
           <a href="/art">Wall Art</a>
           <a href="/lighting">Lighting</a>

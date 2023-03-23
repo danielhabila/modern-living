@@ -6,6 +6,7 @@ import postRoute from "./routes/postRoute.js";
 import lightingModel from "./routes/lightingRoute.js";
 import furnitureRoute from "./routes/furnitureRoute.js";
 import artRoute from "./routes/artRoute.js";
+import stripeRoute from "./routes/stripeRoute.js";
 
 connectDB(); //connects to mongodb
 
@@ -18,8 +19,7 @@ app.use("/api/fetchFurniture", furnitureRoute);
 app.use("/api/fetchLighting", lightingModel);
 app.use("/api/postImages", postRoute);
 app.use("/api/fetchArt", artRoute);
-
-// app.get("/", "Welcome!");
+app.use("/api/paymentIntent", stripeRoute);
 
 app.listen(4000, () => {
   console.log("Server is listening on port 4000.");

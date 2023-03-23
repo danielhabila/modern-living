@@ -8,6 +8,7 @@ import {
   increaseCount,
   removeFromCart,
 } from "../state/cartReducer";
+import StripePayButton from "./StripePayButton";
 
 export default function CartMenu() {
   const [open, setOpen] = useState(true);
@@ -15,7 +16,6 @@ export default function CartMenu() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cartItem);
-
   console.log(cart);
 
   const totalPrice = cart.reduce((total, item) => {
@@ -93,7 +93,13 @@ export default function CartMenu() {
                                         <a>{item?.name}</a>
                                       </h3>
                                       <p className="ml-4">
-                                        ${item?.price.toLocaleString()}
+                                        {item &&
+                                          `$${(item.price * item.qty)
+                                            .toFixed(0)
+                                            .replace(
+                                              /\d(?=(\d{3})+$)/g,
+                                              "$&,"
+                                            )}`}
                                       </p>
                                     </div>
                                   </div>
@@ -163,7 +169,8 @@ export default function CartMenu() {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <a
+                        <StripePayButton cartItems={cart} setOpen={false} />
+                        {/* <a
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                           onClick={() => {
                             navigate("/checkout");
@@ -171,7 +178,7 @@ export default function CartMenu() {
                           }}
                         >
                           Checkout
-                        </a>
+                        </a> */}
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <button
