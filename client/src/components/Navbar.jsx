@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,6 +7,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import CartMenu from "./CartMenu";
+import CartMenu2 from "./CartMenu2";
+import CartContext from "../state/CartContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -79,12 +81,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        {cartToggle && (
-          <CartMenu
-            setCartToggle={setCartToggle}
-            className="ease-in-out duration-500"
-          />
-        )}
+        {cartToggle && <CartMenu className="ease-in-out duration-500" />}
       </div>
       <div className="relative">
         <div

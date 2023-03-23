@@ -16,7 +16,7 @@ export default function CartMenu() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cartItem);
-  console.log(cart);
+  // console.log(cart);
 
   const totalPrice = cart.reduce((total, item) => {
     return total + item.qty * item?.price;
@@ -169,7 +169,7 @@ export default function CartMenu() {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <StripePayButton cartItems={cart} setOpen={false} />
+                        <StripePayButton cartItems={cart} />
                         {/* <a
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                           onClick={() => {

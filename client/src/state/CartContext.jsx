@@ -1,11 +1,8 @@
 import React, { createContext, useState } from "react";
 
-export const CartContext = createContext({
-  cartToggle: false,
-  setCartToggle: () => {},
-});
+const CartContext = createContext();
 
-export default function CartProvider({ children }) {
+export function CartProvider({ children }) {
   const [cartToggle, setCartToggle] = useState(false);
 
   const value = {
@@ -13,5 +10,7 @@ export default function CartProvider({ children }) {
     setCartToggle,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>; // this cart provider is essentially saying any component we wrap around is gonna have access to the date in the value
 }
+
+export default CartContext;
