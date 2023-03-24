@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,9 +9,11 @@ import {
   removeFromCart,
 } from "../state/cartReducer";
 import StripePayButton from "./StripePayButton";
+import { CartContext } from "../state/CartContext";
 
 export default function CartMenu() {
-  const [open, setOpen] = useState(true);
+  const { open, setOpen } = useContext(CartContext);
+  // const [open, setOpen] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -8,14 +8,14 @@ import {
 } from "@heroicons/react/24/outline";
 import CartMenu from "./CartMenu";
 import CartMenu2 from "./CartMenu2";
-import CartContext from "../state/CartContext";
+import { CartContext } from "../state/CartContext";
 
 const Navbar = () => {
+  const { cartToggle, setCartToggle } = useContext(CartContext);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cartItem);
-
-  const [cartToggle, setCartToggle] = useState(false);
 
   const [nav, setNav] = useState(true);
   const handleNav = () => {
